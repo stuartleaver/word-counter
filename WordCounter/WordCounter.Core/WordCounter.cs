@@ -23,14 +23,9 @@ namespace WordCounter.Core
 
             foreach (var word in words)
             {
-                if (_wordCount.ContainsKey(word))
-                {
-                    _wordCount[word]++;
-                }
-                else
-                {
-                    _wordCount.Add(word, 1);
-                }
+                _wordCount.TryGetValue(word, out var count);
+
+                _wordCount[word] = count + 1;
             }
 
             var orderedList = _wordCount.OrderByDescending(value => value.Value).Take(_returnNumber).ToDictionary(pair => pair.Key, pair => pair.Value);
