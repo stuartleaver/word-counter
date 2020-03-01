@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WordCounter.ConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\stuart.leaver\\source\\repos\\stuartleaver\\word-counter\\WordCounter\\WordCounter.ConsoleApp\\bin\\Debug\\netcoreapp3.1\\mobydick.txt"
+    }
+  }
+}

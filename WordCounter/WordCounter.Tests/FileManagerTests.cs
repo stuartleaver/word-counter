@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 using FakeItEasy;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WordCounter.Core;
 using WordCounter.Core.Interfaces;
@@ -10,6 +11,8 @@ namespace WordCounter.Tests
     [TestClass]
     public class FileManagerTests
     {
+        private ILogger<FileRepository> _logger;
+
         private IFileManager _fileManager;
 
         private IFileRepository _fileRepository;
@@ -17,9 +20,11 @@ namespace WordCounter.Tests
         [TestInitialize]
         public void TestInit()
         {
+            _logger = A.Fake<ILogger<FileRepository>>();
+
             _fileManager = A.Fake<IFileManager>();
 
-            _fileRepository = new FileRepository(_fileManager);
+            _fileRepository = new FileRepository(_logger, _fileManager);
         }
 
         [TestMethod]
@@ -41,6 +46,19 @@ namespace WordCounter.Tests
 
             // Assert
             Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FileNotFoundException))]
+        public void FileManagerTests_ThrowsAnExceptionWhenTheFileIsNotFound()
+        {
+            // Arrange
+            A.CallTo(() => _fileManager.StreamReader(A<string>.Ignored)).Throws(() => new FileNotFoundException());
+
+            // Act
+            _fileRepository.LoadFile(@"c:\filedoesnotexist.txt");
+
+            // Assert - Expects Exception
         }
     }
 }

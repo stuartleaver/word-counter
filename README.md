@@ -32,3 +32,22 @@ The output from the above command using the mobydick.txt file is:
 542 all  
 541 as  
 458 at  
+
+## Running the application
+The application can either be run from within Visual Studio or from a command line prompt.
+
+If running from within Visual Studio, The application arguments will need to be set to include the file name and it's location.
+
+![ApplicationArguements](images/application-arguements.png)
+
+If running from a command prompt, the command will need to include the file name and it's location.
+```
+WordCounter.ConsoleApp.exe C:\Users\stuart.leaver\source\repos\stuartleaver\word-counter\WordCounter\WordCounter.ConsoleApp\bin\Debug\netcoreapp3.1\mobydick.txt
+```
+
+## First Version
+The first version of the application simply loads the file, formats the text in a similar way to the bas program above before splitting the words into a string array. The words are then counted before being output to the command prompt window.
+
+This simple approach serves as a way of ensuring the output is correct as per the sample result. It also gives a baseline for performance. When running this version in release mode within Visual Studio, the time takes was 106ms.
+
+![first-version](images/first-version.png)
