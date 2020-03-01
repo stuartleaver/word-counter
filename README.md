@@ -53,4 +53,13 @@ Some thoughts behind this:
 * The lines in the sample file are not that long and so there may not be scope for a performance gain based on that.
 * The `MaxDegreeOfParallelism` was changed to various values as a test, but this either had no impact at all or a negative impact. The more processes running, the more the lock would of played a part.
 
-To switch between the the version with `Parallel.ForEach` and the one without, change line 31 of `Program.cs` to either call `CountWordsByLine` or `CountWords`. 
+To switch between the version with `Parallel.ForEach` and the one without, change line 31 of `Program.cs` to either call `CountWordsByLine` or `CountWords`.
+
+## Notes
+Some notes on the way somethings have been done and thoughts on further work:
+* A Console Application was chosen was it produces a similar output to the bash program above with ease.
+* In terms of Unit Test coverage, `Program.cs` has no coverage. Given that the majority of the code is calling the targeted framework code, an assumption has been made that this will have already been tested. The code for counting the words has a 98% coverage.
+* When looking into the performance of parallelism:
+  * Further word could be done to test counting words on a block of text rather than per line.
+  * Testing on using a dictionary per process and then merging them once all process have finished. This could help reduce the impact of locking the dictionary.
+  * Look at the use of `ConcurrentDictionary` for example. This was not done here as the idea was to try and stay away from the use of higher level language containers.
