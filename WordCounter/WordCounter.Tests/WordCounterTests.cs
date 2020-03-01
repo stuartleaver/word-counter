@@ -165,5 +165,34 @@ namespace WordCounter.Tests
             // Assert
             Assert.AreEqual(expectedWordCount, actualWordCount);
         }
+
+        [TestMethod]
+        public void WordCounterTests_ReturnsCorrectWordCountWhenCountingByLines()
+        {
+            // As this method uses the same approach to counting words as CountWords does, an assumption has been made
+            // that the above tests will cover the code doing the counting and that this test is to ensure that the
+            // async code doesn't have a negative affect.
+
+            // Arrange
+            const string text = "The quick brown fox jumps over the lazy dog";
+
+            var expectedResult = new Dictionary<string, int>
+            {
+                { "the", 2 },
+                { "quick", 1 },
+                { "brown", 1 },
+                { "fox", 1 },
+                { "jumps", 1 },
+                { "over", 1 },
+                { "lazy", 1 },
+                { "dog", 1 }
+            };
+
+            // Act
+            var actualResult = _wordCounter.CountWordsByLine(text);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedResult, actualResult);
+        }
     }
 }

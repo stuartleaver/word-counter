@@ -38,3 +38,19 @@ This version changed the way the code checked to see if the word already existed
 The result, running in Release mode from within Visual Studio was 98ms. This is not really much of an improvement over the first version and this is probably due to the sample file not being large enough for the efficiency of the `TryGetValue` method show.
 
 ![second-version](images/second-version.png)
+
+## Third Version
+While keeping the change to `TryGetValue`, this version also included the introduction of `Parallel.ForEach`. The idea behind this change is to count the words in each line in parallel, and thus, hopefully increasing the performance of the application.
+
+As thought, this change would actually cause the word counting to produce the wrong result as the Dictionary being used is not thread safe. Therefor the `TryGetValue` code was put within a `lock`.
+
+When run, the application did produce the same result as per the sample result above, however, there was only a very small, if that, performance improvement. Running as per the previous versions, it took 95ms.
+
+![second-version](images/third-version.png)
+
+Some thoughts behind this:
+* Locking the dictionary would of had an impact on the performance.
+* The lines in the sample file are not that long and so there may not be scope for a performance gain based on that.
+* The `MaxDegreeOfParallelism` was changed to various values as a test, but this either had no impact at all or a negative impact. The more processes running, the more the lock would of played a part.
+
+To switch between the the version with `Parallel.ForEach` and the one without, change line 31 of `Program.cs` to either call `CountWordsByLine` or `CountWords`. 

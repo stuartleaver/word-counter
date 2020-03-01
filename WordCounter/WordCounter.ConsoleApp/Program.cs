@@ -11,7 +11,7 @@ namespace WordCounter.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var servicesProvider = BuildDi();
+            var servicesProvider = BuildDependencyInjection();
 
             var fileRepository = servicesProvider.GetRequiredService<IFileRepository>();
 
@@ -28,7 +28,7 @@ namespace WordCounter.ConsoleApp
 
                 var text = fileRepository.LoadFile(args[0]);
 
-                var wordCount = wordCounter.CountWords(text);
+                var wordCount = wordCounter.CountWordsByLine(text);
 
                 stopwatch.Stop();
 
@@ -49,7 +49,7 @@ namespace WordCounter.ConsoleApp
             Console.ReadLine();
         }
 
-        private static IServiceProvider BuildDi()
+        private static IServiceProvider BuildDependencyInjection()
         {
             return new ServiceCollection()
                 .AddSingleton<IFileManager, FileManager>()
