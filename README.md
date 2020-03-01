@@ -11,27 +11,7 @@ cat $1 | tr -cs 'a-zA-Z' '[\n*]' | grep -v "^$" | tr '[:upper:]' '[:lower:]'| so
 
 ## Sample Result
 The output from the above command using the mobydick.txt file is:
-
-4284 the  
-2192 and  
-2185 of  
-1861 a  
-1685 to  
-1366 in  
-1056 i  
-1024 that  
-889 his  
-821 it  
-783 he  
-616 but  
-603 was  
-595 with  
-577 s  
-564 is  
-551 for  
-542 all  
-541 as  
-458 at  
+![bash-program-output](images/bash-program-output.png)
 
 ## Running the application
 The application can either be run from within Visual Studio or from a command line prompt.
