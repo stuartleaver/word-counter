@@ -55,6 +55,11 @@ Some thoughts behind this:
 
 To switch between the version with `Parallel.ForEach` and the one without, change line 31 of `Program.cs` to either call `CountWordsByLine` or `CountWords`.
 
+## Running Against Binary Files
+The application runs even if it is passed an executable file. For example, the following is a result of testing with `C:\Windows\regedit.exe`:
+
+![running-against-binary-files](images/running-against-binary-files.png)
+
 ## Notes
 Some notes on the way somethings have been done and thoughts on further work:
 * A Console Application was chosen was it produces a similar output to the bash program above with ease.
