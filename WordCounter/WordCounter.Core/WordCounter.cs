@@ -22,6 +22,11 @@ namespace WordCounter.Core
             _dictionaryLock = new object();
         }
 
+        /// <summary>
+        /// Counts the words contained within a string word by word
+        /// </summary>
+        /// <param name="text">Text containing the words to count</param>
+        /// <returns>Dictionary&lt;string, int&gt;</returns>
         public Dictionary<string, int> CountWords(string text)
         {
             var words = FormatTextForWordCount(text);
@@ -38,6 +43,11 @@ namespace WordCounter.Core
             return orderedList;
         }
 
+        /// <summary>
+        /// Counts the contained within a string word by word for each line.
+        /// </summary>
+        /// <param name="text">Text containing the words to count</param>
+        /// <returns>Dictionary&lt;string, int&gt;</returns>
         public Dictionary<string, int> CountWordsByLine(string text)
         {
             var lines = text.Split('\n');

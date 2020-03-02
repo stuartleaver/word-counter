@@ -8,7 +8,7 @@ namespace WordCounter.Core.Extensions
         /// <summary>
         /// Remove non a-z characters replacing with a new line (tr -cs 'a-zA-Z' '[\n*]')
         /// </summary>
-        /// <param name="text"></param>
+        /// <param name="text">Text to format</param>
         /// <returns>string</returns>
         public static string RemoveNonAlphanumericCharacters(this string text)
         {

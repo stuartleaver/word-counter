@@ -17,6 +17,11 @@ namespace WordCounter.Core
             _fileManager = fileManager;
         }
 
+        /// <summary>
+        /// Loads the file for counting
+        /// </summary>
+        /// <param name="filePath">Path and name of the file</param>
+        /// <returns></returns>
         public string LoadFile(string filePath)
         {
             try
